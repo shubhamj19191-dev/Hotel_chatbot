@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grand Palace Hotel | Luxury Stays &amp; Hotel Assistant</title>
+  <meta name="description" content="Grand Palace Hotel. Refined rooms, fine dining and a 24/7 Hotel Assistant to answer your questions." />
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Grand Palace Hotel home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M4 27V14l12-9 12 9v13M10 27V16m6 11V12m6 15V16M2 27h28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">Grand Palace<small>Hotel</small></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main">
+        <a href="#about">The Hotel</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#day">A Day Here</a>
+        <a href="#assistant">Hotel Assistant</a>
+        <a href="#assistant" class="btn btn-gold btn-sm">Ask a Question</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-slides" id="heroSlides" aria-hidden="true">
+        <i class="slide s1"></i><i class="slide s2"></i><i class="slide s3"></i>
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <span class="orb orb-1" aria-hidden="true"></span>
+      <span class="orb orb-2" aria-hidden="true"></span>
+
+      <div class="container hero-grid">
+        <div class="hero-inner">
+          <p class="hero-note">Five-star hospitality since 1928</p>
+          <h1>
+            <span class="line"><span>A stay worthy of</span></span>
+            <span class="line"><span>the finest occasions.</span></span>
+          </h1>
+          <p class="hero-lead">
+            Generous suites, a celebrated kitchen and a Hotel Assistant that answers your
+            questions at any hour.
+          </p>
+          <div class="hero-actions">
+            <a href="#assistant" class="btn btn-gold">Chat with our Assistant</a>
+            <a href="#experiences" class="btn btn-ghost">Explore the hotel</a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>Check-in</dt><dd>From 2:00 PM</dd></div>
+            <div><dt>Check-out</dt><dd>Until 11:00 AM</dd></div>
+            <div><dt>Assistant</dt><dd>Online 24 hours</dd></div>
+          </dl>
+        </div>
+
+        <aside class="hero-card-wrap">
+          <div class="hero-card" id="heroCard">
+            <div class="hc-head"><span class="hc-dot"></span>Hotel Assistant<em>Online</em></div>
+            <p class="hc-label">Guests often ask</p>
+            <p class="hc-q"><span id="heroQ"></span><i class="caret"></i></p>
+            <button type="button" class="btn btn-gold" id="heroAsk">Ask this now</button>
+            <p class="hc-foot">Replies in seconds, at any hour.</p>
+          </div>
+        </aside>
+      </div>
+
+      <a href="#about" class="scroll-cue" aria-label="Scroll down"><i></i></a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Free Wi-Fi</span><b></b><span>Airport pickup</span><b></b><span>Rooftop dining</span><b></b><span>Spa &amp; wellness</span><b></b><span>Heated pool</span><b></b><span>24-hour room service</span><b></b><span>Event halls</span><b></b>
+        <span>Free Wi-Fi</span><b></b><span>Airport pickup</span><b></b><span>Rooftop dining</span><b></b><span>Spa &amp; wellness</span><b></b><span>Heated pool</span><b></b><span>24-hour room service</span><b></b><span>Event halls</span><b></b>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="collage reveal">
+          <div class="pic pic-a"></div>
+          <div class="pic pic-b"></div>
+          <div class="seal" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><path id="circ" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+              <text><textPath href="#circ">Grand Palace Hotel · Five-star since 1928 · </textPath></text>
+            </svg>
+            <span>GP</span>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <h2 class="reveal">Quiet luxury, in the heart of the city</h2>
+          <p class="reveal" style="--d:.1s">
+            Grand Palace Hotel pairs classic grandeur with modern comfort. Every room is
+            finished in natural stone, deep upholstery and soft evening light, and our team
+            is trained to anticipate what you need before you ask.
+          </p>
+          <p class="reveal" style="--d:.2s">
+            Whether you are here for a weekend, a wedding or a long business trip,
+            we make the details effortless.
+          </p>
+
+          <div class="stats">
+            <div class="stat reveal" style="--d:.1s"><strong data-count="120" data-suffix="+">0</strong><span>Rooms and suites</span></div>
+            <div class="stat reveal" style="--d:.2s"><strong data-count="4">0</strong><span>Restaurants and bars</span></div>
+            <div class="stat reveal" style="--d:.3s"><strong data-count="24" data-suffix="/7">0</strong><span>Guest support</span></div>
+            <div class="stat reveal" style="--d:.4s"><strong data-count="98" data-suffix="%">0</strong><span>Guests who return</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCES (expanding panels) -->
+    <section class="section experiences" id="experiences">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Everything within reach</h2>
+          <p>Hover or tap a panel to see what is waiting for you.</p>
+        </div>
+
+        <div class="accordion reveal" id="accordion">
+          <article class="panel active" tabindex="0" style="--img:url('https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80')">
+            <span class="panel-title-v">Rooms &amp; Suites</span>
+            <div class="panel-body">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 18V8m0 6h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M6.5 11.5a1.5 1.5 0 1 0 0-.01"/></svg></div>
+              <h3>Rooms &amp; Suites</h3>
+              <p>Deluxe rooms and panoramic suites with king beds, marble bathrooms and blackout drapes for deep sleep.</p>
+            </div>
+          </article>
+
+          <article class="panel" tabindex="0" style="--img:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80')">
+            <span class="panel-title-v">Fine Dining</span>
+            <div class="panel-body">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 21V3c-2 1-3 4-3 8h3"/></svg></div>
+              <h3>Fine Dining</h3>
+              <p>Seasonal menus, a rooftop lounge and all-day in-room dining.</p>
+            </div>
+          </article>
+
+          <article class="panel" tabindex="0" style="--img:url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80')">
+            <span class="panel-title-v">Spa &amp; Pool</span>
+            <div class="panel-body">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 21c4-3 6-6 6-9a6 6 0 0 0-12 0c0 3 2 6 6 9zM12 12v-2"/></svg></div>
+              <h3>Spa &amp; Pool</h3>
+              <p>Treatments, steam rooms, a heated indoor pool and a quiet fitness studio.</p>
+            </div>
+          </article>
+
+          <article class="panel" tabindex="0" style="--img:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80')">
+            <span class="panel-title-v">Events</span>
+            <div class="panel-body">
+              <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg></div>
+              <h3>Events &amp; Weddings</h3>
+              <p>Ballrooms and private dining rooms with a dedicated planner for every celebration.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- A DAY AT THE HOTEL -->
+    <section class="section day" id="day">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>A day at Grand Palace</h2>
+          <p>From the first coffee to the last light, here is how guests spend their time.</p>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <div class="tl-line" aria-hidden="true"></div>
+
+          <div class="tl-item reveal">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></div>
+            <div><h3>Morning</h3><p>Start with a slow breakfast, then swim a few laps or settle by the pool with a coffee.</p></div>
+          </div>
+
+          <div class="tl-item reveal">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 21c4-3 6-6 6-9a6 6 0 0 0-12 0c0 3 2 6 6 9zM12 12v-2"/></svg></div>
+            <div><h3>Afternoon</h3><p>Book a spa treatment, explore the city or take a quiet hour in your suite.</p></div>
+          </div>
+
+          <div class="tl-item reveal">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 21V3c-2 1-3 4-3 8h3"/></svg></div>
+            <div><h3>Evening</h3><p>Dinner on the rooftop as the city lights come on, with a menu that changes with the season.</p></div>
+          </div>
+
+          <div class="tl-item reveal">
+            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div>
+            <div><h3>Night</h3><p>Room service is available around the clock, and our team is always one message away.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOTEL ASSISTANT -->
+    <section class="section assistant" id="assistant">
+      <div class="container assistant-grid">
+
+        <div class="assistant-intro reveal">
+          <h2>Ask our Hotel Assistant</h2>
+          <p>
+            Get quick answers about rooms, food, timings and services.
+            Type your question or tap one below.
+          </p>
+
+          <div class="tabs" role="tablist" aria-label="Question topics">
+            <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="stay">Your stay</button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-tab="food">Food</button>
+            <button type="button" class="tab" role="tab" aria-selected="false" data-tab="services">Services</button>
+          </div>
+
+          <div class="chip-group active" data-group="stay">
+            <button type="button" class="chip" data-question="What are the check-in and check-out times?">Check-in and check-out times</button>
+            <button type="button" class="chip" data-question="What room types do you offer?">Room types</button>
+            <button type="button" class="chip" data-question="Do you offer late check-out?">Late check-out</button>
+          </div>
+          <div class="chip-group" data-group="food">
+            <button type="button" class="chip" data-question="Do you have a restaurant and what are the dining hours?">Restaurant and dining hours</button>
+            <button type="button" class="chip" data-question="Is breakfast included with the stay?">Is breakfast included?</button>
+            <button type="button" class="chip" data-question="Do you offer room service?">Room service</button>
+          </div>
+          <div class="chip-group" data-group="services">
+            <button type="button" class="chip" data-question="What facilities and amenities does the hotel have?">Hotel amenities</button>
+            <button type="button" class="chip" data-question="Do you offer airport pickup?">Airport pickup</button>
+            <button type="button" class="chip" data-question="Do you have a swimming pool or spa?">Pool and spa</button>
+          </div>
+        </div>
+
+        <div class="chat-frame reveal" style="--d:.15s">
+          <div class="chat-panel" id="chat-panel" role="region" aria-label="Hotel Assistant chat">
+            <div class="chat-top">
+              <div class="avatar" aria-hidden="true">GP</div>
+              <div class="chat-title">
+                <strong>Hotel Assistant</strong>
+                <span class="status"><i></i><span id="statusText">Online now</span></span>
+              </div>
+              <button type="button" class="clear-btn" id="clear-btn" aria-label="Start a new chat">New chat</button>
+            </div>
+
+            <div class="chat-box" id="chat-box" aria-live="polite"></div>
+
+            <form class="chat-form" id="chat-form" autocomplete="off">
+              <input type="text" id="user-input" placeholder="Type your question here" aria-label="Your message" />
+              <button type="submit" id="send-btn" class="send" aria-label="Send message">
+                <span>Send</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-7-8-1z"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand brand-light">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M4 27V14l12-9 12 9v13M10 27V16m6 11V12m6 15V16M2 27h28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-text">Grand Palace<small>Hotel</small></span>
+        </div>
+        <p class="footer-about">Refined stays and thoughtful service, day and night.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p>Grand Palace Hotel<br />Please see our reservations team for directions</p>
+      </div>
+      <div>
+        <h4>Reservations</h4>
+        <p>Front desk: open 24 hours<br />Or ask the Hotel Assistant above</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; <span id="year"></span> Grand Palace Hotel. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <a href="#assistant" class="fab" id="fab" aria-label="Ask the Hotel Assistant">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+    <span>Ask Assistant</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

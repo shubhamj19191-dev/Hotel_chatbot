@@ -1,0 +1,82 @@
+{
+  "hotelName": "Grand Palace Hotel",
+  "description": "A luxury hotel offering refined rooms, fine dining, wellness facilities, events, and 24/7 concierge service.",
+  "established": 1928,
+
+  "checkIn": "2:00 PM",
+  "checkOut": "11:00 AM",
+
+  "rooms": [
+    {
+      "type": "Standard Room",
+      "pricePerNight": 3000,
+      "description": "Comfortable room suitable for 1-2 guests."
+    },
+    {
+      "type": "Deluxe Room",
+      "pricePerNight": 4500,
+      "description": "Spacious room with premium amenities, king bed, marble bathroom, and blackout drapes."
+    },
+    {
+      "type": "Suite",
+      "pricePerNight": 7000,
+      "description": "Luxury suite with a separate living area, king bed, marble bathroom, and panoramic views."
+    }
+  ],
+
+  "facilities": [
+    "Free Wi-Fi",
+    "Swimming Pool",
+    "Heated Indoor Pool",
+    "Restaurant",
+    "Rooftop Lounge",
+    "Fine Dining",
+    "All-Day In-Room Dining",
+    "Gym",
+    "Spa & Wellness",
+    "Steam Rooms",
+    "24/7 Front Desk",
+    "24/7 AI Concierge",
+    "Room Service",
+    "Poolside Towels and Refreshments",
+    "Events & Weddings",
+    "Ballrooms",
+    "Private Dining Rooms",
+    "Dedicated Event Planner",
+    "Airport Pickup"
+  ],
+
+  "dining": {
+    "restaurant": true,
+    "fineDining": true,
+    "rooftopLounge": true,
+    "inRoomDining": "Available all day"
+  },
+
+  "wellness": {
+    "spa": true,
+    "steamRooms": true,
+    "heatedIndoorPool": true,
+    "fitnessCenter": true
+  },
+
+  "events": {
+    "eventsAndWeddings": true,
+    "ballrooms": true,
+    "privateDiningRooms": true,
+    "dedicatedPlanner": true
+  },
+
+  "services": {
+    "airportPickup": true,
+    "roomService": true,
+    "aiConcierge": "Available 24/7",
+    "frontDesk": "Available 24/7"
+  },
+
+  "policies": {
+    "cancellation": "Free cancellation up to 24 hours before check-in.",
+    "children": "Children are welcome.",
+    "pets": "Pets are not allowed."
+  }
+}
