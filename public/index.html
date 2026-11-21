@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Grand Palace Hotel | Luxury Stays &amp; Hotel Assistant</title>
-  <meta name="description" content="Grand Palace Hotel. Refined rooms, fine dining and a 24/7 Hotel Assistant to answer your questions." />
+  <title>Grand Palace Hotel | Luxury Stays &amp; AI Hotel Assistant</title>
+  <meta name="description" content="Grand Palace Hotel. Ask our AI assistant about rooms, dining and services and get answers in seconds." />
   <script>document.documentElement.classList.add("js");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -31,55 +31,86 @@
       <nav class="nav-links" id="navLinks" aria-label="Main">
         <a href="#about">The Hotel</a>
         <a href="#experiences">Experiences</a>
-        <a href="#day">A Day Here</a>
-        <a href="#assistant">Hotel Assistant</a>
-        <a href="#assistant" class="btn btn-gold btn-sm">Ask a Question</a>
+        <a href="#contact">Contact</a>
+        <a href="#top" class="btn btn-gold btn-sm" data-open-chat>Ask the Assistant</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
 
-    <!-- HERO -->
+    <!-- HERO with live chatbot -->
     <section class="hero" id="hero">
-      <div class="hero-slides" id="heroSlides" aria-hidden="true">
-        <i class="slide s1"></i><i class="slide s2"></i><i class="slide s3"></i>
-      </div>
-      <div class="hero-shade" aria-hidden="true"></div>
-      <span class="orb orb-1" aria-hidden="true"></span>
-      <span class="orb orb-2" aria-hidden="true"></span>
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="aurora" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+      <div class="particles" id="particles" aria-hidden="true"></div>
 
       <div class="container hero-grid">
-        <div class="hero-inner">
+
+        <div class="hero-copy">
           <p class="hero-note">Five-star hospitality since 1928</p>
           <h1>
-            <span class="line"><span>A stay worthy of</span></span>
-            <span class="line"><span>the finest occasions.</span></span>
+            <span class="line"><span>Ask anything.</span></span>
+            <span class="line"><span>Arrive ready.</span></span>
           </h1>
           <p class="hero-lead">
-            Generous suites, a celebrated kitchen and a Hotel Assistant that answers your
-            questions at any hour.
+            Meet the Grand Palace assistant. Rooms, dining, timings and services,
+            answered in seconds, day or night.
           </p>
-          <div class="hero-actions">
-            <a href="#assistant" class="btn btn-gold">Chat with our Assistant</a>
-            <a href="#experiences" class="btn btn-ghost">Explore the hotel</a>
-          </div>
+
+          <ul class="points">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+              <div><strong>Instant answers</strong><span>No waiting on hold.</span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg>
+              <div><strong>Made for this hotel</strong><span>Ask about our rooms, dining and services.</span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+              <div><strong>Need a person?</strong><span>Our front desk is open 24 hours.</span></div>
+            </li>
+          </ul>
+
           <dl class="hero-facts">
             <div><dt>Check-in</dt><dd>From 2:00 PM</dd></div>
             <div><dt>Check-out</dt><dd>Until 11:00 AM</dd></div>
-            <div><dt>Assistant</dt><dd>Online 24 hours</dd></div>
           </dl>
         </div>
 
-        <aside class="hero-card-wrap">
-          <div class="hero-card" id="heroCard">
-            <div class="hc-head"><span class="hc-dot"></span>Hotel Assistant<em>Online</em></div>
-            <p class="hc-label">Guests often ask</p>
-            <p class="hc-q"><span id="heroQ"></span><i class="caret"></i></p>
-            <button type="button" class="btn btn-gold" id="heroAsk">Ask this now</button>
-            <p class="hc-foot">Replies in seconds, at any hour.</p>
+        <div class="chat-frame">
+          <div class="chat-panel" id="chat-panel" role="region" aria-label="Hotel Assistant chat">
+            <div class="chat-top">
+              <div class="avatar" aria-hidden="true">GP</div>
+              <div class="chat-title">
+                <strong>Hotel Assistant</strong>
+                <span class="status"><i></i><span id="statusText">Online now</span></span>
+              </div>
+              <button type="button" class="clear-btn" id="clear-btn" aria-label="Start a new chat">New chat</button>
+            </div>
+
+            <div class="chat-box" id="chat-box" aria-live="polite"></div>
+
+            <div class="chip-rail" aria-label="Suggested questions">
+              <button type="button" class="chip" data-question="What are the check-in and check-out times?">Check-in and check-out</button>
+              <button type="button" class="chip" data-question="What room types do you offer?">Room types</button>
+              <button type="button" class="chip" data-question="Do you have a restaurant and what are the dining hours?">Dining hours</button>
+              <button type="button" class="chip" data-question="Is breakfast included with the stay?">Is breakfast included?</button>
+              <button type="button" class="chip" data-question="What facilities and amenities does the hotel have?">Amenities</button>
+              <button type="button" class="chip" data-question="Do you offer airport pickup?">Airport pickup</button>
+            </div>
+
+            <form class="chat-form" id="chat-form" autocomplete="off">
+              <input type="text" id="user-input" placeholder="Type your question here" aria-label="Your message" />
+              <button type="submit" id="send-btn" class="send" aria-label="Send message">
+                <span>Send</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-7-8-1z"/></svg>
+              </button>
+            </form>
           </div>
-        </aside>
+        </div>
+
       </div>
 
       <a href="#about" class="scroll-cue" aria-label="Scroll down"><i></i></a>
@@ -130,7 +161,7 @@
       </div>
     </section>
 
-    <!-- EXPERIENCES (expanding panels) -->
+    <!-- EXPERIENCES -->
     <section class="section experiences" id="experiences">
       <div class="container">
         <div class="section-head reveal">
@@ -178,97 +209,13 @@
       </div>
     </section>
 
-    <!-- A DAY AT THE HOTEL -->
-    <section class="section day" id="day">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>A day at Grand Palace</h2>
-          <p>From the first coffee to the last light, here is how guests spend their time.</p>
-        </div>
-
-        <div class="timeline" id="timeline">
-          <div class="tl-line" aria-hidden="true"></div>
-
-          <div class="tl-item reveal">
-            <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg></div>
-            <div><h3>Morning</h3><p>Start with a slow breakfast, then swim a few laps or settle by the pool with a coffee.</p></div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 21c4-3 6-6 6-9a6 6 0 0 0-12 0c0 3 2 6 6 9zM12 12v-2"/></svg></div>
-            <div><h3>Afternoon</h3><p>Book a spa treatment, explore the city or take a quiet hour in your suite.</p></div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8M5 3v8M17 21V3c-2 1-3 4-3 8h3"/></svg></div>
-            <div><h3>Evening</h3><p>Dinner on the rooftop as the city lights come on, with a menu that changes with the season.</p></div>
-          </div>
-
-          <div class="tl-item reveal">
-            <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></div>
-            <div><h3>Night</h3><p>Room service is available around the clock, and our team is always one message away.</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOTEL ASSISTANT -->
-    <section class="section assistant" id="assistant">
-      <div class="container assistant-grid">
-
-        <div class="assistant-intro reveal">
-          <h2>Ask our Hotel Assistant</h2>
-          <p>
-            Get quick answers about rooms, food, timings and services.
-            Type your question or tap one below.
-          </p>
-
-          <div class="tabs" role="tablist" aria-label="Question topics">
-            <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="stay">Your stay</button>
-            <button type="button" class="tab" role="tab" aria-selected="false" data-tab="food">Food</button>
-            <button type="button" class="tab" role="tab" aria-selected="false" data-tab="services">Services</button>
-          </div>
-
-          <div class="chip-group active" data-group="stay">
-            <button type="button" class="chip" data-question="What are the check-in and check-out times?">Check-in and check-out times</button>
-            <button type="button" class="chip" data-question="What room types do you offer?">Room types</button>
-            <button type="button" class="chip" data-question="Do you offer late check-out?">Late check-out</button>
-          </div>
-          <div class="chip-group" data-group="food">
-            <button type="button" class="chip" data-question="Do you have a restaurant and what are the dining hours?">Restaurant and dining hours</button>
-            <button type="button" class="chip" data-question="Is breakfast included with the stay?">Is breakfast included?</button>
-            <button type="button" class="chip" data-question="Do you offer room service?">Room service</button>
-          </div>
-          <div class="chip-group" data-group="services">
-            <button type="button" class="chip" data-question="What facilities and amenities does the hotel have?">Hotel amenities</button>
-            <button type="button" class="chip" data-question="Do you offer airport pickup?">Airport pickup</button>
-            <button type="button" class="chip" data-question="Do you have a swimming pool or spa?">Pool and spa</button>
-          </div>
-        </div>
-
-        <div class="chat-frame reveal" style="--d:.15s">
-          <div class="chat-panel" id="chat-panel" role="region" aria-label="Hotel Assistant chat">
-            <div class="chat-top">
-              <div class="avatar" aria-hidden="true">GP</div>
-              <div class="chat-title">
-                <strong>Hotel Assistant</strong>
-                <span class="status"><i></i><span id="statusText">Online now</span></span>
-              </div>
-              <button type="button" class="clear-btn" id="clear-btn" aria-label="Start a new chat">New chat</button>
-            </div>
-
-            <div class="chat-box" id="chat-box" aria-live="polite"></div>
-
-            <form class="chat-form" id="chat-form" autocomplete="off">
-              <input type="text" id="user-input" placeholder="Type your question here" aria-label="Your message" />
-              <button type="submit" id="send-btn" class="send" aria-label="Send message">
-                <span>Send</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-7-8-1z"/></svg>
-              </button>
-            </form>
-          </div>
-        </div>
-
+    <!-- CTA BAND -->
+    <section class="cta">
+      <div class="aurora" aria-hidden="true"><i class="b1"></i><i class="b3"></i></div>
+      <div class="container cta-inner reveal">
+        <h2>Still have a question?</h2>
+        <p>Our assistant is online right now and replies in seconds.</p>
+        <a href="#top" class="btn btn-gold" data-open-chat>Ask the Assistant</a>
       </div>
     </section>
   </main>
@@ -290,7 +237,7 @@
       </div>
       <div>
         <h4>Reservations</h4>
-        <p>Front desk: open 24 hours<br />Or ask the Hotel Assistant above</p>
+        <p>Front desk: open 24 hours<br />Or ask the Hotel Assistant</p>
       </div>
     </div>
     <div class="container footer-bottom">
@@ -298,7 +245,7 @@
     </div>
   </footer>
 
-  <a href="#assistant" class="fab" id="fab" aria-label="Ask the Hotel Assistant">
+  <a href="#top" class="fab" id="fab" aria-label="Ask the Hotel Assistant" data-open-chat>
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
     <span>Ask Assistant</span>
   </a>

@@ -173,78 +173,46 @@ chips.forEach((chip) => chip.addEventListener("click", () => sendMessage(chip.da
 clearBtn.addEventListener("click", resetChat);
 resetChat();
 
-/* ---------- Question tabs ---------- */
-const tabs = document.querySelectorAll(".tab");
-const groups = document.querySelectorAll(".chip-group");
-tabs.forEach((tab) =>
-  tab.addEventListener("click", () => {
-    tabs.forEach((t) => {
-      const on = t === tab;
-      t.classList.toggle("active", on);
-      t.setAttribute("aria-selected", String(on));
-    });
-    groups.forEach((g) => g.classList.toggle("active", g.dataset.group === tab.dataset.tab));
+/* ---------- "Ask the Assistant" buttons: back to the chat and focus the input ---------- */
+const navToggle = document.getElementById("navToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMenu() {
+  navLinks.classList.remove("open");
+  navToggle.setAttribute("aria-expanded", "false");
+}
+
+document.querySelectorAll("[data-open-chat]").forEach((el) =>
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeMenu();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    setTimeout(() => userInput.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
   })
 );
 
-/* ---------- Hero: typing question card ---------- */
-const heroQ = document.getElementById("heroQ");
-const heroAsk = document.getElementById("heroAsk");
-const heroQuestions = Array.from(chips).map((c) => c.dataset.question);
-let hqIndex = 0;
-let hqChars = 0;
-let hqDeleting = false;
-
-function heroTick() {
-  const q = heroQuestions[hqIndex];
-  if (!hqDeleting) {
-    hqChars++;
-    heroQ.textContent = q.slice(0, hqChars);
-    if (hqChars >= q.length) {
-      hqDeleting = true;
-      return setTimeout(heroTick, 2400);
-    }
-    return setTimeout(heroTick, 45);
+/* ---------- Hero: floating gold particles ---------- */
+const particleBox = document.getElementById("particles");
+if (!reduceMotion) {
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElement("span");
+    const size = 2 + Math.random() * 3.5;
+    s.style.width = s.style.height = `${size}px`;
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.animationDuration = `${12 + Math.random() * 14}s`;
+    s.style.animationDelay = `${-Math.random() * 20}s`;
+    particleBox.appendChild(s);
   }
-  hqChars -= 2;
-  if (hqChars <= 0) {
-    hqChars = 0;
-    hqDeleting = false;
-    hqIndex = (hqIndex + 1) % heroQuestions.length;
-    heroQ.textContent = "";
-    return setTimeout(heroTick, 350);
-  }
-  heroQ.textContent = q.slice(0, hqChars);
-  setTimeout(heroTick, 18);
 }
 
-if (reduceMotion) {
-  heroQ.textContent = heroQuestions[0];
-} else {
-  setTimeout(heroTick, 1600);
-}
-
-heroAsk.addEventListener("click", () => {
-  const question = heroQuestions[hqIndex];
-  document.getElementById("assistant").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-  setTimeout(() => sendMessage(question), reduceMotion ? 0 : 800);
-});
-
-/* ---------- Hero: mouse spotlight + card tilt ---------- */
+/* ---------- Hero: mouse spotlight ---------- */
 const hero = document.getElementById("hero");
-const heroCard = document.getElementById("heroCard");
 if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
   hero.addEventListener("mousemove", (e) => {
     const r = hero.getBoundingClientRect();
     hero.style.setProperty("--mx", `${e.clientX - r.left}px`);
     hero.style.setProperty("--my", `${e.clientY - r.top}px`);
-
-    const cr = heroCard.getBoundingClientRect();
-    const dx = (e.clientX - (cr.left + cr.width / 2)) / window.innerWidth;
-    const dy = (e.clientY - (cr.top + cr.height / 2)) / window.innerHeight;
-    heroCard.style.transform = `rotateY(${dx * 12}deg) rotateX(${-dy * 12}deg)`;
   });
-  hero.addEventListener("mouseleave", () => (heroCard.style.transform = ""));
 }
 
 /* ---------- Expanding panels ---------- */
@@ -260,35 +228,19 @@ panels.forEach((p) => {
   p.addEventListener("focus", () => activatePanel(p));
 });
 
-/* ---------- Header, progress, parallax, timeline ---------- */
+/* ---------- Header, progress bar, floating button ---------- */
 const header = document.getElementById("siteHeader");
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-const fab = document.getElementById("fab");
-const assistantSection = document.getElementById("assistant");
 const progress = document.getElementById("progress");
-const heroSlides = document.getElementById("heroSlides");
-const timeline = document.getElementById("timeline");
-
-let assistantVisible = false;
+const fab = document.getElementById("fab");
+let chatInView = true;
 let ticking = false;
 
 function update() {
   const y = window.scrollY;
   const max = document.documentElement.scrollHeight - window.innerHeight;
-
   header.classList.toggle("scrolled", y > 40);
-  fab.classList.toggle("show", y > 700 && !assistantVisible);
   progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-
-  if (!reduceMotion && y < window.innerHeight * 1.2) {
-    heroSlides.style.transform = `translate3d(0, ${y * 0.22}px, 0)`;
-  }
-
-  const r = timeline.getBoundingClientRect();
-  const p = Math.min(1, Math.max(0, (window.innerHeight * 0.65 - r.top) / r.height));
-  timeline.style.setProperty("--p", p.toFixed(3));
-
+  fab.classList.toggle("show", !chatInView && y > 300);
   ticking = false;
 }
 window.addEventListener("scroll", () => {
@@ -300,27 +252,21 @@ window.addEventListener("scroll", () => {
 window.addEventListener("resize", update);
 update();
 
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(
+    ([entry]) => {
+      chatInView = entry.isIntersecting;
+      update();
+    },
+    { threshold: 0.15 }
+  ).observe(chatPanel);
+}
+
 navToggle.addEventListener("click", () => {
   const open = navLinks.classList.toggle("open");
   navToggle.setAttribute("aria-expanded", String(open));
 });
-navLinks.querySelectorAll("a").forEach((a) =>
-  a.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    navToggle.setAttribute("aria-expanded", "false");
-  })
-);
-
-/* ---------- Hide floating button while the chat is on screen ---------- */
-if ("IntersectionObserver" in window) {
-  new IntersectionObserver(
-    ([entry]) => {
-      assistantVisible = entry.isIntersecting;
-      update();
-    },
-    { threshold: 0.25 }
-  ).observe(assistantSection);
-}
+navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
 
 /* ---------- Scroll reveal ---------- */
 const revealEls = document.querySelectorAll(".reveal");
