@@ -22,6 +22,7 @@ const clearBtn = document.getElementById("clear-btn");
 const statusText = document.getElementById("statusText");
 const chips = document.querySelectorAll(".chip");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const canHover = window.matchMedia("(hover: hover)").matches;
 let isSending = false;
 
 /* ---------- Chat helpers ---------- */
@@ -173,7 +174,8 @@ chips.forEach((chip) => chip.addEventListener("click", () => sendMessage(chip.da
 clearBtn.addEventListener("click", resetChat);
 resetChat();
 
-/* ---------- "Ask the Assistant" buttons: back to the chat and focus the input ---------- */
+/* ---------- Buttons that jump back to the chat ---------- */
+const navWrap = document.getElementById("navWrap");
 const navToggle = document.getElementById("navToggle");
 const navLinks = document.getElementById("navLinks");
 
@@ -182,91 +184,124 @@ function closeMenu() {
   navToggle.setAttribute("aria-expanded", "false");
 }
 
+function goToChat(then) {
+  closeMenu();
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  setTimeout(then, reduceMotion ? 0 : 700);
+}
+
+// Just open the chat and focus the input
 document.querySelectorAll("[data-open-chat]").forEach((el) =>
   el.addEventListener("click", (e) => {
     e.preventDefault();
-    closeMenu();
-    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
-    setTimeout(() => userInput.focus({ preventScroll: true }), reduceMotion ? 0 : 650);
+    goToChat(() => userInput.focus({ preventScroll: true }));
   })
 );
 
-/* ---------- Hero: floating gold particles ---------- */
-const particleBox = document.getElementById("particles");
-if (!reduceMotion) {
-  for (let i = 0; i < 22; i++) {
-    const s = document.createElement("span");
-    const size = 2 + Math.random() * 3.5;
-    s.style.width = s.style.height = `${size}px`;
-    s.style.left = `${Math.random() * 100}%`;
-    s.style.animationDuration = `${12 + Math.random() * 14}s`;
-    s.style.animationDelay = `${-Math.random() * 20}s`;
-    particleBox.appendChild(s);
-  }
-}
+// Open the chat and ask a ready-made question (room cards)
+document.querySelectorAll("[data-ask]").forEach((el) =>
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
+    goToChat(() => sendMessage(el.dataset.ask));
+  })
+);
 
-/* ---------- Hero: mouse spotlight ---------- */
-const hero = document.getElementById("hero");
-if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
-  hero.addEventListener("mousemove", (e) => {
-    const r = hero.getBoundingClientRect();
-    hero.style.setProperty("--mx", `${e.clientX - r.left}px`);
-    hero.style.setProperty("--my", `${e.clientY - r.top}px`);
-  });
-}
-
-/* ---------- Expanding panels ---------- */
-const panels = document.querySelectorAll(".panel");
-function activatePanel(panel) {
-  panels.forEach((p) => p.classList.toggle("active", p === panel));
-}
-panels.forEach((p) => {
-  p.addEventListener("mouseenter", () => {
-    if (window.matchMedia("(hover: hover)").matches) activatePanel(p);
-  });
-  p.addEventListener("click", () => activatePanel(p));
-  p.addEventListener("focus", () => activatePanel(p));
-});
-
-/* ---------- Header, progress bar, floating button ---------- */
-const header = document.getElementById("siteHeader");
-const progress = document.getElementById("progress");
-const fab = document.getElementById("fab");
-let chatInView = true;
-let ticking = false;
-
-function update() {
-  const y = window.scrollY;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  header.classList.toggle("scrolled", y > 40);
-  progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
-  fab.classList.toggle("show", !chatInView && y > 300);
-  ticking = false;
-}
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    requestAnimationFrame(update);
-    ticking = true;
-  }
-}, { passive: true });
-window.addEventListener("resize", update);
-update();
-
-if ("IntersectionObserver" in window) {
-  new IntersectionObserver(
-    ([entry]) => {
-      chatInView = entry.isIntersecting;
-      update();
-    },
-    { threshold: 0.15 }
-  ).observe(chatPanel);
-}
-
+/* ---------- Floating pill nav: hide on scroll down, show on scroll up ---------- */
 navToggle.addEventListener("click", () => {
   const open = navLinks.classList.toggle("open");
   navToggle.setAttribute("aria-expanded", String(open));
 });
 navLinks.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+
+/* ---------- Scroll effects: nav, parallax, floating button ---------- */
+const heroMedia = document.getElementById("heroMedia");
+const fab = document.getElementById("fab");
+let lastY = window.scrollY;
+let chatInView = true;
+let ticking = false;
+
+function onScroll() {
+  const y = window.scrollY;
+  const menuOpen = navLinks.classList.contains("open");
+
+  if (!menuOpen) {
+    if (y > lastY + 6 && y > 220) navWrap.classList.add("hide");
+    else if (y < lastY - 6 || y < 120) navWrap.classList.remove("hide");
+  }
+  lastY = y;
+
+  if (!reduceMotion && y < window.innerHeight * 1.2) {
+    heroMedia.style.transform = `translate3d(0, ${y * 0.14}px, 0)`;
+  }
+  fab.classList.toggle("show", !chatInView && y > 300);
+  ticking = false;
+}
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(onScroll);
+    ticking = true;
+  }
+}, { passive: true });
+onScroll();
+
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(
+    ([entry]) => {
+      chatInView = entry.isIntersecting;
+      onScroll();
+    },
+    { threshold: 0.15 }
+  ).observe(chatPanel);
+}
+
+/* ---------- Magnetic buttons ---------- */
+if (!reduceMotion && canHover) {
+  document.querySelectorAll(".magnetic").forEach((el) => {
+    el.addEventListener("mousemove", (e) => {
+      const r = el.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      el.style.transform = `translate(${dx * 0.18}px, ${dy * 0.28}px)`;
+    });
+    el.addEventListener("mouseleave", () => (el.style.transform = ""));
+  });
+}
+
+/* ---------- Rooms: arrows + drag to scroll ---------- */
+const roomTrack = document.getElementById("roomTrack");
+function scrollRooms(dir) {
+  const card = roomTrack.querySelector(".room");
+  const step = card ? card.offsetWidth + 22 : 400;
+  roomTrack.scrollBy({ left: dir * step, behavior: reduceMotion ? "auto" : "smooth" });
+}
+document.getElementById("roomPrev").addEventListener("click", () => scrollRooms(-1));
+document.getElementById("roomNext").addEventListener("click", () => scrollRooms(1));
+
+let dragStartX = 0;
+let dragStartScroll = 0;
+let dragging = false;
+let moved = false;
+roomTrack.addEventListener("pointerdown", (e) => {
+  if (e.pointerType !== "mouse" || e.target.closest("button")) return;
+  dragging = true;
+  moved = false;
+  dragStartX = e.clientX;
+  dragStartScroll = roomTrack.scrollLeft;
+});
+window.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 4) {
+    moved = true;
+    roomTrack.classList.add("dragging");
+  }
+  roomTrack.scrollLeft = dragStartScroll - dx;
+});
+window.addEventListener("pointerup", () => {
+  if (!dragging) return;
+  dragging = false;
+  roomTrack.classList.remove("dragging");
+});
 
 /* ---------- Scroll reveal ---------- */
 const revealEls = document.querySelectorAll(".reveal");
@@ -295,7 +330,7 @@ function animateCount(el) {
     el.textContent = target + suffix;
     return;
   }
-  const duration = 1600;
+  const duration = 1800;
   const start = performance.now();
   function frame(now) {
     const p = Math.min((now - start) / duration, 1);
