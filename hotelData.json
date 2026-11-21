@@ -1,82 +1,497 @@
 {
-  "hotelName": "Grand Palace Hotel",
-  "description": "A luxury hotel offering refined rooms, fine dining, wellness facilities, events, and 24/7 concierge service.",
-  "established": 1928,
+  "hotel": {
+    "name": "Grand Palace Hotel",
+    "description": "A modern luxury hotel offering comfortable rooms, dining, wellness, business facilities, events, and 24/7 guest services.",
+    "category": "5-star luxury hotel",
+    "established": 1928,
+    "location": {
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "12 Marine View Road, Mumbai, Maharashtra 400001",
+      "landmark": "Near Marine Drive",
+      "airport": "Chhatrapati Shivaji Maharaj International Airport",
+      "airportDistance": "24 km",
+      "cityCenterDistance": "4 km"
+    },
+    "contact": {
+      "phone": "+91 22 4000 1234",
+      "email": "reservations@grandpalacehotel.example",
+      "website": "https://grandpalacehotel.example"
+    }
+  },
 
-  "checkIn": "2:00 PM",
-  "checkOut": "11:00 AM",
+  "checkInAndCheckOut": {
+    "checkIn": "2:00 PM",
+    "checkOut": "11:00 AM",
+    "earlyCheckIn": "Subject to availability. Guests may request early check-in at the front desk.",
+    "lateCheckOut": "Subject to availability and may involve an additional charge.",
+    "earlyCheckInFrom": "10:00 AM",
+    "lateCheckOutUntil": "2:00 PM"
+  },
 
   "rooms": [
     {
       "type": "Standard Room",
       "pricePerNight": 3000,
-      "description": "Comfortable room suitable for 1-2 guests."
+      "currency": "INR",
+      "maximumGuests": 2,
+      "bed": "1 Queen Bed",
+      "size": "280 sq ft",
+      "view": "City View",
+      "description": "Comfortable room suitable for business or leisure stays.",
+      "amenities": [
+        "Free Wi-Fi",
+        "Air conditioning",
+        "Smart TV",
+        "Mini refrigerator",
+        "Tea and coffee maker",
+        "Work desk",
+        "Wardrobe",
+        "Electronic safe",
+        "Hair dryer",
+        "Complimentary toiletries"
+      ]
     },
     {
       "type": "Deluxe Room",
       "pricePerNight": 4500,
-      "description": "Spacious room with premium amenities, king bed, marble bathroom, and blackout drapes."
+      "currency": "INR",
+      "maximumGuests": 3,
+      "bed": "1 King Bed",
+      "size": "360 sq ft",
+      "view": "City or Partial Sea View",
+      "description": "Spacious room with premium amenities and a comfortable king bed.",
+      "amenities": [
+        "Free Wi-Fi",
+        "Air conditioning",
+        "Smart TV",
+        "Mini refrigerator",
+        "Tea and coffee maker",
+        "Work desk",
+        "King-size bed",
+        "Electronic safe",
+        "Marble bathroom",
+        "Bathrobes",
+        "Hair dryer",
+        "Premium toiletries",
+        "Blackout curtains"
+      ]
+    },
+    {
+      "type": "Executive Room",
+      "pricePerNight": 6000,
+      "currency": "INR",
+      "maximumGuests": 3,
+      "bed": "1 King Bed",
+      "size": "420 sq ft",
+      "view": "Sea View",
+      "description": "Premium room designed for business and luxury travelers.",
+      "amenities": [
+        "Free Wi-Fi",
+        "Air conditioning",
+        "Smart TV",
+        "Mini refrigerator",
+        "Coffee machine",
+        "Work desk",
+        "King-size bed",
+        "Electronic safe",
+        "Marble bathroom",
+        "Premium toiletries",
+        "Bathrobes",
+        "Sea view",
+        "Access to Executive Lounge"
+      ]
     },
     {
       "type": "Suite",
       "pricePerNight": 7000,
-      "description": "Luxury suite with a separate living area, king bed, marble bathroom, and panoramic views."
+      "currency": "INR",
+      "maximumGuests": 4,
+      "bed": "1 King Bed",
+      "size": "650 sq ft",
+      "view": "Panoramic Sea View",
+      "description": "Luxury suite with a separate living area and panoramic views.",
+      "amenities": [
+        "Free Wi-Fi",
+        "Air conditioning",
+        "Smart TV",
+        "Separate living room",
+        "Dining area",
+        "Mini refrigerator",
+        "Coffee machine",
+        "Work desk",
+        "King-size bed",
+        "Marble bathroom",
+        "Bathtub",
+        "Premium toiletries",
+        "Bathrobes",
+        "Panoramic sea view",
+        "Access to Executive Lounge"
+      ]
+    },
+    {
+      "type": "Presidential Suite",
+      "pricePerNight": 15000,
+      "currency": "INR",
+      "maximumGuests": 4,
+      "bed": "1 King Bed",
+      "size": "1200 sq ft",
+      "view": "Panoramic Sea View",
+      "description": "Our most spacious accommodation with luxury living and dining areas.",
+      "amenities": [
+        "Free Wi-Fi",
+        "Private living room",
+        "Private dining area",
+        "Panoramic sea view",
+        "King-size bed",
+        "Walk-in wardrobe",
+        "Luxury bathroom",
+        "Bathtub",
+        "Separate shower",
+        "Premium toiletries",
+        "Coffee machine",
+        "Mini bar",
+        "Smart TVs",
+        "Executive Lounge access",
+        "24/7 concierge service"
+      ]
     }
   ],
 
+  "roomInformation": {
+    "extraBed": "Available in selected rooms subject to availability and additional charges.",
+    "babyCrib": "Available on request at no additional charge.",
+    "connectingRooms": "Available on request subject to availability.",
+    "smokingRooms": "Smoking is not permitted inside guest rooms.",
+    "accessibleRooms": "Accessible rooms are available on request.",
+    "roomService": "Available 24/7.",
+    "housekeeping": "Daily housekeeping is provided.",
+    "turndownService": "Available on request for selected room categories.",
+    "minibar": "Available in Deluxe Rooms, Executive Rooms, Suites, and Presidential Suite."
+  },
+
   "facilities": [
     "Free Wi-Fi",
-    "Swimming Pool",
-    "Heated Indoor Pool",
-    "Restaurant",
-    "Rooftop Lounge",
-    "Fine Dining",
-    "All-Day In-Room Dining",
-    "Gym",
-    "Spa & Wellness",
-    "Steam Rooms",
     "24/7 Front Desk",
     "24/7 AI Concierge",
-    "Room Service",
-    "Poolside Towels and Refreshments",
-    "Events & Weddings",
+    "24/7 Room Service",
+    "Swimming Pool",
+    "Heated Indoor Pool",
+    "Fitness Center",
+    "Spa",
+    "Steam Rooms",
+    "Restaurant",
+    "Fine Dining Restaurant",
+    "Rooftop Lounge",
+    "All-Day In-Room Dining",
+    "Business Center",
+    "Meeting Rooms",
     "Ballrooms",
     "Private Dining Rooms",
-    "Dedicated Event Planner",
-    "Airport Pickup"
+    "Events and Wedding Facilities",
+    "Airport Pickup",
+    "Valet Parking",
+    "Laundry Service",
+    "Luggage Storage"
   ],
 
   "dining": {
-    "restaurant": true,
-    "fineDining": true,
-    "rooftopLounge": true,
-    "inRoomDining": "Available all day"
+    "restaurants": [
+      {
+        "name": "The Palace Restaurant",
+        "type": "All-day dining",
+        "cuisine": [
+          "Indian",
+          "Continental",
+          "Asian"
+        ],
+        "breakfast": "7:00 AM - 10:30 AM",
+        "lunch": "12:30 PM - 3:30 PM",
+        "dinner": "7:00 PM - 11:00 PM"
+      },
+      {
+        "name": "Royal Table",
+        "type": "Fine dining",
+        "cuisine": [
+          "Indian",
+          "International"
+        ],
+        "dinner": "7:00 PM - 11:30 PM",
+        "reservationRequired": true
+      },
+      {
+        "name": "Skyline Rooftop Lounge",
+        "type": "Rooftop lounge",
+        "cuisine": [
+          "International",
+          "Snacks"
+        ],
+        "openingTime": "5:00 PM",
+        "closingTime": "12:00 AM"
+      }
+    ],
+    "roomDining": {
+      "available": true,
+      "hours": "24/7",
+      "note": "Guests can order food and beverages directly to their rooms."
+    },
+    "breakfast": {
+      "available": true,
+      "includedByDefault": false,
+      "pricePerPerson": 800,
+      "currency": "INR",
+      "timing": "7:00 AM - 10:30 AM"
+    }
   },
 
   "wellness": {
-    "spa": true,
-    "steamRooms": true,
-    "heatedIndoorPool": true,
-    "fitnessCenter": true
+    "fitnessCenter": {
+      "available": true,
+      "hours": "24/7",
+      "equipment": [
+        "Treadmills",
+        "Exercise Bikes",
+        "Elliptical Machines",
+        "Free Weights",
+        "Strength Training Equipment"
+      ]
+    },
+    "spa": {
+      "available": true,
+      "hours": "9:00 AM - 10:00 PM",
+      "services": [
+        "Massage",
+        "Body Treatments",
+        "Facials",
+        "Wellness Treatments"
+      ],
+      "appointmentRequired": true
+    },
+    "steamRooms": {
+      "available": true,
+      "hours": "7:00 AM - 10:00 PM"
+    },
+    "swimmingPool": {
+      "available": true,
+      "type": "Outdoor Pool",
+      "hours": "6:00 AM - 10:00 PM",
+      "childrenAllowed": true
+    },
+    "heatedIndoorPool": {
+      "available": true,
+      "hours": "7:00 AM - 9:00 PM"
+    }
+  },
+
+  "services": {
+    "frontDesk": "Available 24/7",
+    "aiConcierge": "Available 24/7",
+    "roomService": "Available 24/7",
+    "housekeeping": "Daily",
+    "laundry": "Available with additional charges",
+    "dryCleaning": "Available with additional charges",
+    "luggageStorage": "Available before check-in and after check-out",
+    "wakeUpCall": "Available on request",
+    "currencyExchange": "Available at the front desk",
+    "concierge": "Available 24/7",
+    "airportPickup": {
+      "available": true,
+      "advanceBookingRequired": true,
+      "note": "Guests should contact the hotel before arrival to arrange airport pickup."
+    }
+  },
+
+  "parking": {
+    "available": true,
+    "types": [
+      "Valet Parking",
+      "Self Parking"
+    ],
+    "valetAvailable": true,
+    "selfParkingAvailable": true,
+    "charges": "Additional charges may apply.",
+    "reservation": "Parking does not require advance reservation."
+  },
+
+  "internet": {
+    "wifi": true,
+    "availability": "Available throughout the hotel",
+    "price": "Complimentary",
+    "network": "GrandPalace_Guest",
+    "businessCenterInternet": true
+  },
+
+  "payment": {
+    "acceptedMethods": [
+      "Visa",
+      "Mastercard",
+      "American Express",
+      "UPI",
+      "Debit Card",
+      "Credit Card",
+      "Cash"
+    ],
+    "currency": "INR",
+    "advancePayment": "Some bookings may require advance payment.",
+    "securityDeposit": "A refundable security deposit may be required at check-in.",
+    "taxes": "Applicable government taxes are added to the room rate."
+  },
+
+  "booking": {
+    "reservationRequired": false,
+    "recommendedBookingMethod": "Guests can book through the hotel's official booking channel or contact reservations.",
+    "reservationEmail": "reservations@grandpalacehotel.example",
+    "reservationPhone": "+91 22 4000 1234",
+    "minimumAgeForBooking": 18,
+    "identificationRequired": true,
+    "acceptedIdentification": [
+      "Passport",
+      "Driving License",
+      "Government-issued ID"
+    ]
+  },
+
+  "policies": {
+    "cancellation": "Free cancellation up to 24 hours before check-in.",
+    "lateCancellation": "Late cancellation may result in a cancellation charge depending on the booking terms.",
+    "noShow": "No-show charges may apply according to the reservation terms.",
+    "children": "Children are welcome.",
+    "pets": "Pets are not allowed.",
+    "smoking": "Smoking is not permitted inside guest rooms or indoor public areas.",
+    "parties": "Parties are not permitted inside guest rooms.",
+    "quietHours": "Guests are requested to maintain quiet hours from 10:00 PM to 7:00 AM.",
+    "outsideFood": "Outside food may be subject to hotel policies.",
+    "identification": "Valid government-issued identification is required at check-in.",
+    "minimumCheckInAge": 18
+  },
+
+  "accessibility": {
+    "accessibleRooms": true,
+    "wheelchairAccess": true,
+    "accessibleEntrance": true,
+    "accessibleElevators": true,
+    "accessibleParking": true,
+    "accessibleRestrooms": true,
+    "note": "Guests requiring accessibility assistance should inform the hotel before arrival."
+  },
+
+  "businessFacilities": {
+    "businessCenter": true,
+    "meetingRooms": true,
+    "conferenceFacilities": true,
+    "printing": true,
+    "photocopying": true,
+    "highSpeedInternet": true,
+    "corporateEvents": true
   },
 
   "events": {
     "eventsAndWeddings": true,
     "ballrooms": true,
     "privateDiningRooms": true,
-    "dedicatedPlanner": true
+    "meetingRooms": true,
+    "conferenceFacilities": true,
+    "dedicatedEventPlanner": true,
+    "eventCatering": true,
+    "note": "Guests can contact the events team for availability, packages, and pricing."
   },
 
-  "services": {
-    "airportPickup": true,
-    "roomService": true,
-    "aiConcierge": "Available 24/7",
-    "frontDesk": "Available 24/7"
+  "nearbyAttractions": [
+    {
+      "name": "Marine Drive",
+      "distance": "1.5 km"
+    },
+    {
+      "name": "Gateway of India",
+      "distance": "4 km"
+    },
+    {
+      "name": "Colaba Causeway",
+      "distance": "4.5 km"
+    },
+    {
+      "name": "Chhatrapati Shivaji Maharaj Terminus",
+      "distance": "5 km"
+    },
+    {
+      "name": "Juhu Beach",
+      "distance": "12 km"
+    }
+  ],
+
+  "guestSupport": {
+    "lostAndFound": "Guests can contact the front desk regarding lost belongings.",
+    "medicalAssistance": "The front desk can assist guests in contacting nearby medical services.",
+    "emergency": "For emergencies, contact the front desk immediately.",
+    "specialRequests": "Special requests are subject to availability and should be communicated before arrival whenever possible.",
+    "complaints": "Guests can contact the front desk or concierge for assistance with complaints or service issues."
   },
 
-  "policies": {
-    "cancellation": "Free cancellation up to 24 hours before check-in.",
-    "children": "Children are welcome.",
-    "pets": "Pets are not allowed."
+  "frequentlyAskedQuestions": [
+    {
+      "question": "What time is check-in?",
+      "answer": "Check-in starts at 2:00 PM."
+    },
+    {
+      "question": "What time is check-out?",
+      "answer": "Check-out is at 11:00 AM."
+    },
+    {
+      "question": "Does the hotel have free Wi-Fi?",
+      "answer": "Yes, complimentary Wi-Fi is available throughout the hotel."
+    },
+    {
+      "question": "Does the hotel have a swimming pool?",
+      "answer": "Yes, the hotel has an outdoor swimming pool and a heated indoor pool."
+    },
+    {
+      "question": "Does the hotel have a gym?",
+      "answer": "Yes, the fitness center is available 24/7."
+    },
+    {
+      "question": "Are pets allowed?",
+      "answer": "No, pets are not allowed."
+    },
+    {
+      "question": "Are children allowed?",
+      "answer": "Yes, children are welcome."
+    },
+    {
+      "question": "Is breakfast included?",
+      "answer": "Breakfast is available, but it is not included by default. The listed price is ₹800 per person."
+    },
+    {
+      "question": "Is parking available?",
+      "answer": "Yes, both valet and self-parking are available. Additional charges may apply."
+    },
+    {
+      "question": "Does the hotel provide airport pickup?",
+      "answer": "Yes, airport pickup is available with advance booking."
+    },
+    {
+      "question": "Can I cancel my booking?",
+      "answer": "Free cancellation is available up to 24 hours before check-in, subject to booking terms."
+    },
+    {
+      "question": "Can I check in early?",
+      "answer": "Early check-in is subject to availability. Guests can request it at the front desk."
+    },
+    {
+      "question": "Can I check out late?",
+      "answer": "Late check-out is subject to availability and may involve an additional charge."
+    }
+  ],
+
+  "importantInstructionsForAI": {
+    "useOnlyProvidedInformation": true,
+    "doNotInventInformation": true,
+    "doNotInventAvailability": true,
+    "doNotInventPrices": true,
+    "doNotInventPolicies": true,
+    "doNotPromiseReservations": true,
+    "unknownInformationResponse": "I'm sorry, I don't have that information in the hotel's current information. Please contact the front desk or reservations team for assistance.",
+    "currency": "INR",
+    "answerStyle": "Be friendly, concise, professional, and helpful. Give direct answers and mention relevant details when useful."
   }
 }
